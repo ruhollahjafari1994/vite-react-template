@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vite-react-template.jruhollah.workers.dev/sitemap.xml
