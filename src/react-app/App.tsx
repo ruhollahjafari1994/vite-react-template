@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import "./App.css";
-
 const SITE_URL = "https://vite-react-template.jruhollah.workers.dev";
 const CV_URL =
   "https://drive.google.com/file/d/1PqhkXiOZif3bDAKZH1Y7S0E4ws4QnP4p/view?usp=sharing";
