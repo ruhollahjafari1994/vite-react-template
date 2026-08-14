@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+const SITE_URL = "https://vite-react-template.jruhollah.workers.dev";
 const CV_URL =
   "https://drive.google.com/file/d/1PqhkXiOZif3bDAKZH1Y7S0E4ws4QnP4p/view?usp=sharing";
 
@@ -12,22 +13,15 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 20);
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const closeMenu = () => setMobileOpen(false);
 
   return (
     <div className="app">
-      {/* NAVBAR */}
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="nav-inner">
           <a href="#home" className="logo">
@@ -39,15 +33,13 @@ function App() {
             <a href="#skills">Skills</a>
             <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
-            <a href="#contact" className="nav-cta">
-              Let's Talk
-            </a>
+            <a href="#contact">Contact</a>
           </nav>
 
           <button
             className="mobile-menu"
-            onClick={() => setMobileOpen((value) => !value)}
-            aria-label="Open navigation"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation"
           >
             {mobileOpen ? "×" : "☰"}
           </button>
@@ -55,19 +47,23 @@ function App() {
 
         {mobileOpen && (
           <nav className="mobile-links">
-            <a href="#about" onClick={closeMenu}>
+            <a href="#about" onClick={() => setMobileOpen(false)}>
               About
             </a>
-            <a href="#skills" onClick={closeMenu}>
+
+            <a href="#skills" onClick={() => setMobileOpen(false)}>
               Skills
             </a>
-            <a href="#experience" onClick={closeMenu}>
+
+            <a href="#experience" onClick={() => setMobileOpen(false)}>
               Experience
             </a>
-            <a href="#projects" onClick={closeMenu}>
+
+            <a href="#projects" onClick={() => setMobileOpen(false)}>
               Projects
             </a>
-            <a href="#contact" onClick={closeMenu}>
+
+            <a href="#contact" onClick={() => setMobileOpen(false)}>
               Contact
             </a>
           </nav>
@@ -76,6 +72,7 @@ function App() {
 
       <main>
         {/* HERO */}
+
         <section className="hero" id="home">
           <div className="container hero-grid">
             <div>
@@ -85,34 +82,56 @@ function App() {
               </div>
 
               <h1>
-                Senior Software
+                Senior Software Engineer
                 <br />
-                Engineer{" "}
-                <span className="gradient-text">& Builder.</span>
+                <span className="gradient-text">
+                  C# · .NET · Microservices
+                </span>
               </h1>
 
               <p className="hero-description">
-                I design and build{" "}
-                <strong>
-                  scalable backend systems, distributed applications and
-                  modern web platforms
-                </strong>{" "}
-                using .NET, C#, Microservices, SQL Server, React and
-                graph-based technologies.
+                <strong>Roohollah Jafari</strong> is a Senior Software
+                Engineer specializing in C#, .NET, ASP.NET Core,
+                Microservices, SQL Server, React and scalable backend
+                systems.
               </p>
 
               <div className="hero-actions">
                 <a href="#projects" className="btn btn-primary">
-                  View My Work <Arrow />
+                  View My Work
+                  <Arrow />
                 </a>
 
                 <a
                   href={CV_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
-                  Download CV <ExternalIcon />
+                  Download CV
+                  <ExternalIcon />
+                </a>
+              </div>
+
+              <div className="social-links">
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Roohollah Jafari GitHub"
+                >
+                  <GithubIcon />
+                  GitHub
+                </a>
+
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Roohollah Jafari LinkedIn"
+                >
+                  <LinkedinIcon />
+                  LinkedIn
                 </a>
               </div>
             </div>
@@ -146,62 +165,61 @@ function App() {
 
                   &nbsp;&nbsp;backend: [
                   <br />
+
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   <span className="code-string">"C#"</span>,{" "}
                   <span className="code-string">".NET"</span>,{" "}
-                  <span className="code-string">"Microservices"</span>
-                  <br />
-                  &nbsp;&nbsp;],
+                  <span className="code-string">
+                    "ASP.NET Core"
+                  </span>
+                  ,
                   <br />
 
-                  &nbsp;&nbsp;frontend: [
-                  <br />
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="code-string">"React"</span>,{" "}
-                  <span className="code-string">"TypeScript"</span>
+                  <span className="code-string">
+                    "Microservices"
+                  </span>
                   <br />
+
                   &nbsp;&nbsp;],
                   <br />
 
                   &nbsp;&nbsp;database: [
                   <br />
+
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="code-string">"SQL Server"</span>,{" "}
+                  <span className="code-string">
+                    "SQL Server"
+                  </span>
+                  ,{" "}
                   <span className="code-string">"Neo4j"</span>,{" "}
                   <span className="code-string">"Redis"</span>
                   <br />
+
                   &nbsp;&nbsp;],
                   <br />
 
-                  &nbsp;&nbsp;mindset:{" "}
+                  &nbsp;&nbsp;frontend: [
+                  <br />
+
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <span className="code-string">"React"</span>,{" "}
                   <span className="code-string">
-                    "Build. Scale. Improve."
+                    "TypeScript"
                   </span>
+                  <br />
+
+                  &nbsp;&nbsp;]
                   <br />
 
                   {"}"};
                 </div>
 
                 <div className="metric-grid">
-                  <div className="metric">
-                    <strong>.NET</strong>
-                    <span>Backend Engineering</span>
-                  </div>
-
-                  <div className="metric">
-                    <strong>DDD</strong>
-                    <span>Architecture</span>
-                  </div>
-
-                  <div className="metric">
-                    <strong>Micro</strong>
-                    <span>Services</span>
-                  </div>
-
-                  <div className="metric">
-                    <strong>Cloud</strong>
-                    <span>Deployment</span>
-                  </div>
+                  <Metric value=".NET" label="Backend" />
+                  <Metric value="DDD" label="Architecture" />
+                  <Metric value="Neo4j" label="Graph DB" />
+                  <Metric value="React" label="Frontend" />
                 </div>
               </div>
             </div>
@@ -209,112 +227,68 @@ function App() {
         </section>
 
         {/* ABOUT */}
+
         <section className="section" id="about">
           <div className="container">
-            <div className="section-header">
-              <div className="section-label">01 / ABOUT</div>
-
-              <h2 className="section-title">
-                Engineering with purpose.
-              </h2>
-
-              <p className="section-description">
-                More than writing code — I focus on architecture,
-                maintainability, performance and delivering systems that
-                create real business value.
-              </p>
-            </div>
+            <SectionHeader
+              number="01"
+              title="About me."
+              description="Software engineering focused on scalable systems, clean architecture and real business value."
+            />
 
             <div className="about-grid">
-              <div className="glass-card about-card">
+              <article className="glass-card">
+                <h3>Senior Software Engineer</h3>
+
                 <p>
-                  I am a Software Engineer focused on backend development
-                  and scalable enterprise systems. My main ecosystem is
-                  C# and .NET, with strong experience in REST APIs,
-                  Microservices, Domain-Driven Design, SQL Server and
-                  distributed systems.
+                  I am a software engineer specializing in backend
+                  development and enterprise software systems.
                 </p>
 
                 <p>
-                  I also work across the stack when needed, using React and
-                  modern JavaScript to create reliable and responsive user
-                  experiences.
+                  My primary technology stack is C# and .NET, with
+                  experience in ASP.NET Core, REST APIs, Microservices,
+                  Domain-Driven Design, SQL Server and distributed
+                  systems.
                 </p>
 
                 <p>
-                  I enjoy solving complex problems, improving existing
-                  systems and turning business requirements into clean,
-                  maintainable software.
+                  I also work with React and TypeScript when building
+                  full-stack applications and modern web interfaces.
                 </p>
-              </div>
+              </article>
 
-              <div className="glass-card">
+              <article className="glass-card">
+                <h3>What I focus on</h3>
+
                 <ul className="focus-list">
-                  <li>
-                    <span className="check">✓</span>
-                    Scalable backend architecture
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    Microservices & distributed systems
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    Clean Architecture & DDD
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    Database design & optimization
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    Graph databases & Neo4j
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    API design & integration
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    SOLID & Design Patterns
-                  </li>
-
-                  <li>
-                    <span className="check">✓</span>
-                    Technical leadership & problem solving
-                  </li>
+                  <li>✓ Scalable backend architecture</li>
+                  <li>✓ Microservices & distributed systems</li>
+                  <li>✓ Clean Architecture & DDD</li>
+                  <li>✓ SQL Server performance</li>
+                  <li>✓ Graph databases & Neo4j</li>
+                  <li>✓ REST API design</li>
+                  <li>✓ SOLID & Design Patterns</li>
+                  <li>✓ Technical problem solving</li>
                 </ul>
-              </div>
+              </article>
             </div>
           </div>
         </section>
 
         {/* SKILLS */}
+
         <section className="section" id="skills">
           <div className="container">
-            <div className="section-header">
-              <div className="section-label">02 / EXPERTISE</div>
-
-              <h2 className="section-title">
-                Technology stack.
-              </h2>
-
-              <p className="section-description">
-                A practical technology stack focused on building reliable,
-                scalable and maintainable software.
-              </p>
-            </div>
+            <SectionHeader
+              number="02"
+              title="Technology stack."
+              description="Technologies and engineering practices I use to build reliable and scalable software."
+            />
 
             <div className="skills-grid">
               <SkillCard
                 title="Backend"
-                icon="λ"
                 items={[
                   "C#",
                   ".NET",
@@ -322,75 +296,63 @@ function App() {
                   "REST API",
                   "EF Core",
                   "LINQ",
-                  "SOLID",
-                  "OOP",
                 ]}
               />
 
               <SkillCard
                 title="Architecture"
-                icon="⌘"
                 items={[
                   "DDD",
                   "Clean Architecture",
                   "Microservices",
+                  "SOLID",
+                  "OOP",
                   "Design Patterns",
-                  "Distributed Systems",
-                  "Event Driven",
                 ]}
               />
 
               <SkillCard
                 title="Databases"
-                icon="DB"
                 items={[
                   "SQL Server",
-                  "EF Core",
+                  "Neo4j",
+                  "Redis",
                   "Stored Procedures",
                   "Indexing",
                   "Performance Tuning",
-                  "Neo4j",
-                  "Redis",
                 ]}
               />
 
               <SkillCard
                 title="Frontend"
-                icon="<>"
                 items={[
                   "React",
                   "TypeScript",
                   "JavaScript",
                   "HTML",
                   "CSS",
-                  "REST Integration",
-                  "Responsive UI",
                 ]}
               />
 
               <SkillCard
                 title="Infrastructure"
-                icon="∞"
                 items={[
                   "Docker",
-                  "Redis",
                   "Git",
                   "CI/CD",
-                  "Cloud Deployment",
+                  "Cloudflare",
                   "Linux",
                 ]}
               />
 
               <SkillCard
                 title="Engineering"
-                icon="⚙"
                 items={[
                   "Code Review",
                   "Refactoring",
                   "Debugging",
                   "Performance",
                   "Technical Design",
-                  "Problem Solving",
                 ]}
               />
             </div>
@@ -398,134 +360,114 @@ function App() {
         </section>
 
         {/* EXPERIENCE */}
+
         <section className="section" id="experience">
           <div className="container">
-            <div className="section-header">
-              <div className="section-label">03 / EXPERIENCE</div>
-
-              <h2 className="section-title">
-                Building enterprise software.
-              </h2>
-
-              <p className="section-description">
-                Experience across backend engineering, enterprise
-                applications, data platforms and distributed architectures.
-              </p>
-            </div>
+            <SectionHeader
+              number="03"
+              title="Professional experience."
+              description="Enterprise software engineering with a focus on backend systems, architecture and complex business domains."
+            />
 
             <div className="timeline">
-              <TimelineItem
-                date="CURRENT"
+              <Experience
                 title="Senior Software Engineer"
                 company="Enterprise Software Engineering"
-                description="Designing and developing scalable .NET services, REST APIs and business applications. Working with domain modeling, microservices, SQL Server, graph data and performance-sensitive enterprise workflows."
+                description="Designing and developing scalable .NET services, REST APIs, business applications and data-intensive enterprise systems."
               />
 
-              <TimelineItem
-                date="RECENT"
+              <Experience
                 title="Backend & Distributed Systems"
-                company=".NET / C# Engineering"
-                description="Developing business-critical backend services with focus on clean architecture, SOLID principles, database optimization, integration patterns and maintainable application design."
+                company="C# / .NET"
+                description="Building maintainable backend services using clean architecture, SOLID principles, domain modeling, SQL Server and distributed system patterns."
               />
 
-              <TimelineItem
-                date="RECENT"
+              <Experience
                 title="Full-Stack Engineering"
                 company="React + .NET"
-                description="Building modern frontend experiences with React and integrating them with robust ASP.NET Core APIs and distributed backend services."
+                description="Developing modern React interfaces integrated with ASP.NET Core APIs and scalable backend services."
               />
             </div>
           </div>
         </section>
 
         {/* PROJECTS */}
+
         <section className="section" id="projects">
           <div className="container">
-            <div className="section-header">
-              <div className="section-label">04 / PROJECTS</div>
-
-              <h2 className="section-title">
-                Selected engineering work.
-              </h2>
-
-              <p className="section-description">
-                Examples of the kind of complex systems and engineering
-                problems I work with.
-              </p>
-            </div>
+            <SectionHeader
+              number="04"
+              title="Selected projects."
+              description="Examples of enterprise systems, backend platforms and architecture problems I work with."
+            />
 
             <div className="project-grid">
-              <ProjectCard
+              <Project
                 number="01"
                 title="Enterprise MLM Platform"
-                description="A large-scale sales and marketer management platform involving hierarchical structures, commissions, reporting, APIs and complex business rules."
-                stack={[
+                description="A large-scale enterprise platform involving marketer management, hierarchical structures, commissions, reporting and complex business rules."
+                technologies={[
                   ".NET",
                   "C#",
                   "SQL Server",
                   "EF Core",
                   "DDD",
-                  "REST API",
                 ]}
-                architecture="Client → API → Application → Domain → Infrastructure → SQL"
               />
 
-              <ProjectCard
+              <Project
                 number="02"
                 title="Neo4j Graph Integration"
-                description="A graph-based data integration solution for synchronizing users, nodes and relationships between Neo4j and SQL Server while handling new records and data consistency."
-                stack={[
+                description="Graph-based data synchronization between Neo4j and SQL Server with node, relationship and data consistency management."
+                technologies={[
                   "Neo4j",
                   "Cypher",
                   ".NET",
                   "SQL Server",
-                  "Graph DB",
                 ]}
-                architecture="Neo4j → Graph Sync → Mapping → SQL Server"
               />
 
-              <ProjectCard
+              <Project
                 number="03"
-                title="Commission & Reporting Platform"
-                description="Enterprise reporting APIs for marketer commissions, performance metrics, hierarchical data and CSV exports with optimized SQL queries."
-                stack={[
+                title="Commission & Reporting APIs"
+                description="Enterprise APIs for commissions, marketer performance, hierarchical reporting and CSV exports."
+                technologies={[
                   ".NET",
                   "SQL Server",
-                  "LINQ",
                   "REST API",
-                  "Reporting",
+                  "LINQ",
                 ]}
-                architecture="React → REST API → Query Layer → SQL"
               />
 
-              <ProjectCard
+              <Project
                 number="04"
                 title="Distributed Backend Services"
-                description="Designing modular backend services with clear boundaries, reusable components, caching, database optimization and production-oriented engineering practices."
-                stack={[
+                description="Modular backend services with caching, database optimization, clean architecture and production-oriented engineering practices."
+                technologies={[
                   "Microservices",
                   ".NET",
                   "Redis",
                   "Docker",
                   "DDD",
-                  "SOLID",
                 ]}
-                architecture="API Gateway → Services → Redis / SQL / External APIs"
               />
             </div>
           </div>
         </section>
 
         {/* CONTACT */}
+
         <section className="section contact" id="contact">
           <div className="container">
             <div className="contact-box">
-              <div className="section-label">05 / CONTACT</div>
+              <div className="section-label">
+                05 / CONTACT
+              </div>
 
               <h2>Let's build something great.</h2>
 
               <p>
-                I am open to remote software engineering opportunities,
+                Open to remote software engineering opportunities,
                 technical collaborations and challenging backend projects.
               </p>
 
@@ -533,7 +475,7 @@ function App() {
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
                 >
                   <LinkedinIcon />
@@ -543,7 +485,7 @@ function App() {
                 <a
                   href={GITHUB_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
                   <GithubIcon />
@@ -553,11 +495,11 @@ function App() {
                 <a
                   href={CV_URL}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="btn btn-secondary"
                 >
+                  Download CV
                   <ExternalIcon />
-                  CV
                 </a>
               </div>
             </div>
@@ -567,118 +509,139 @@ function App() {
 
       <footer className="footer">
         <div className="container footer-inner">
-          <div>
+          <span>
             © {new Date().getFullYear()} Roohollah Jafari
-          </div>
+          </span>
 
-          <div className="footer-code">
+          <span className="footer-code">
             C# · .NET · Microservices · React
-          </div>
+          </span>
         </div>
       </footer>
     </div>
   );
 }
 
-/* ---------------- COMPONENTS ---------------- */
+/* COMPONENTS */
 
-type SkillCardProps = {
+function SectionHeader({
+  number,
+  title,
+  description,
+}: {
+  number: string;
   title: string;
-  icon: string;
-  items: string[];
-};
-
-function SkillCard({ title, icon, items }: SkillCardProps) {
+  description: string;
+}) {
   return (
-    <div className="skill-card">
-      <div className="skill-icon">{icon}</div>
+    <div className="section-header">
+      <div className="section-label">
+        {number} / ROOHOLLAH JAFARI
+      </div>
+
+      <h2 className="section-title">{title}</h2>
+
+      <p className="section-description">{description}</p>
+    </div>
+  );
+}
+
+function SkillCard({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) {
+  return (
+    <article className="skill-card">
+      <div className="skill-icon">◆</div>
 
       <h3>{title}</h3>
 
       <div className="tags">
         {items.map((item) => (
-          <span className="tag" key={item}>
+          <span key={item} className="tag">
             {item}
           </span>
         ))}
-      </div>
-    </div>
-  );
-}
-
-type TimelineItemProps = {
-  date: string;
-  title: string;
-  company: string;
-  description: string;
-};
-
-function TimelineItem({
-  date,
-  title,
-  company,
-  description,
-}: TimelineItemProps) {
-  return (
-    <div className="timeline-item">
-      <div className="timeline-dot" />
-
-      <div className="timeline-date">{date}</div>
-
-      <h3 className="timeline-title">{title}</h3>
-
-      <div className="timeline-company">{company}</div>
-
-      <p className="timeline-description">
-        {description}
-      </p>
-    </div>
-  );
-}
-
-type ProjectCardProps = {
-  number: string;
-  title: string;
-  description: string;
-  stack: string[];
-  architecture: string;
-};
-
-function ProjectCard({
-  number,
-  title,
-  description,
-  stack,
-  architecture,
-}: ProjectCardProps) {
-  return (
-    <article className="project-card">
-      <div>
-        <div className="project-number">
-          PROJECT_{number}
-        </div>
-
-        <h3>{title}</h3>
-
-        <p>{description}</p>
-
-        <div className="architecture">
-          {architecture}
-        </div>
-      </div>
-
-      <div className="project-footer">
-        <div className="project-stack">
-          {stack.map((item) => (
-            <span key={item}>#{item}</span>
-          ))}
-        </div>
       </div>
     </article>
   );
 }
 
-/* ---------------- ICONS ---------------- */
+function Experience({
+  title,
+  company,
+  description,
+}: {
+  title: string;
+  company: string;
+  description: string;
+}) {
+  return (
+    <article className="timeline-item">
+      <div className="timeline-dot" />
+
+      <h3>{title}</h3>
+
+      <div className="timeline-company">
+        {company}
+      </div>
+
+      <p>{description}</p>
+    </article>
+  );
+}
+
+function Project({
+  number,
+  title,
+  description,
+  technologies,
+}: {
+  number: string;
+  title: string;
+  description: string;
+  technologies: string[];
+}) {
+  return (
+    <article className="project-card">
+      <div className="project-number">
+        PROJECT_{number}
+      </div>
+
+      <h3>{title}</h3>
+
+      <p>{description}</p>
+
+      <div className="project-stack">
+        {technologies.map((technology) => (
+          <span key={technology}>
+            #{technology}
+          </span>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function Metric({
+  value,
+  label,
+}: {
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="metric">
+      <strong>{value}</strong>
+      <span>{label}</span>
+    </div>
+  );
+}
+
+/* ICONS */
 
 function Icon({
   children,
