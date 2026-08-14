@@ -1,6 +1,12 @@
 import { Hono } from "hono";
-const app = new Hono<{ Bindings: Env }>();
+import type { Context } from "hono";
 
-app.get("/api/", (c) => c.json({ name: "Cloudflare" }));
+const app = new Hono();
+
+app.get("/api/", (c: Context) => {
+  return c.json({
+    name: "Roohollah Jafari",
+  });
+});
 
 export default app;
